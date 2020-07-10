@@ -50,6 +50,7 @@ export class SettingsPage implements OnInit {
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
+    this.alertservice.showAlert("&#xE876;", "success", "You have successfully logged out!");
   }
 
   ngOnInit() {

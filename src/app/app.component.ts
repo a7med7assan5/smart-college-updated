@@ -8,6 +8,7 @@ import { AuthService } from './services/auth.service';
 import { User, Role } from './_models';
 import { Router } from '@angular/router';
 import { TranslateConfigService } from './services/translate-config.service';
+import { AlertService } from './services/alert.service';
 
 declare var $: any;
 
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthService,
     private translateConfigService: TranslateConfigService,
+    private alertservice: AlertService
   ) {
     this.initializeApp();
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
@@ -64,6 +66,7 @@ export class AppComponent implements OnInit {
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
+    this.alertservice.showAlert("&#xE876;", "success", "You have successfully logged out!");
   }
   title = 'smartCollege';
 

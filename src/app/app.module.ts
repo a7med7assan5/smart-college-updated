@@ -22,6 +22,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         useFactory: (LanguageLoader),
         deps: [HttpClient]
       }
-    }), BrowserAnimationsModule,
+    }), BrowserAnimationsModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 
   ],
   providers: [

@@ -53,7 +53,7 @@ export class loginPage implements OnInit {
 
   ngOnInit() {
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
 
     this.validations_form = this.formBuilder.group({
       id: new FormControl('', Validators.compose([
