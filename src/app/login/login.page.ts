@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { AlertService } from '../services/alert.service';
 import { TranslateConfigService } from '../services/translate-config.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Role } from '../_models';
+import { User, Role } from '../_models';
 
 declare var $: any;
 @Component({
@@ -16,6 +16,7 @@ declare var $: any;
 export class loginPage implements OnInit {
   Id: any;
   password: any;
+  currentUser: User;
   returnUrl: string;
   selectedLanguage: string;
   validations_form: FormGroup;
@@ -27,9 +28,14 @@ export class loginPage implements OnInit {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     // get return url from route parameters or default to '/'
     if (this.authservice.currentUserValue) {
-        this.router.navigate(['/courses'] || ['/mycourses']);
-  }
+      // if (this.currentUser.role === Role.Admin) {
+      //   this.router.navigate(['/courses']);
+      // } else if (this.currentUser.role === Role.Student || this.currentUser.role === Role.Teacher) {
+      //   this.router.navigate(['/mycourses']);
+      // }
+              this.router.navigate(['/home']);
     }
+  }
   togglePassword(): void {
     this.showPassword = !this.showPassword;
 
@@ -47,7 +53,7 @@ export class loginPage implements OnInit {
 
   ngOnInit() {
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/courses' || 'mycourses';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
 
     this.validations_form = this.formBuilder.group({
       id: new FormControl('', Validators.compose([
@@ -71,9 +77,8 @@ export class loginPage implements OnInit {
     this.Id = idinput.value, this.password = passwordinput.value;
     this.authservice.login(this.Id, this.password).pipe(first()).subscribe(res => {
       this.alertservice.showAlert("&#xE876;", "success", "You have successfully logged in!");
-      this.validations_form.reset();
       this.router.navigate([this.returnUrl]);
-
+      this.validations_form.reset();
     }, err => {
       this.alertservice.showAlert("&#xE5CD;", "error", "ID or password is incorrect. please try logging in again!");
     }

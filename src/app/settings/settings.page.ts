@@ -46,14 +46,10 @@ export class SettingsPage implements OnInit {
     this.translateConfigService.setLanguage(this.selectedLanguage);
     localStorage.setItem("myConfig", this.selectedLanguage);
   }
-
+  
   logout() {
-    this.returnUrl = '/login'
     this.authenticationService.logout();
-    // this.router.navigate(['/login']);
-    this.router.navigate([this.returnUrl]);
-
-    // this.alertservice.showAlert("&#xE876;", "success", "You have successfully logged out!");
+    this.router.navigate(['/login']);
   }
 
   ngOnInit() {

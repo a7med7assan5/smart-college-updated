@@ -13,12 +13,12 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then(m => m.loginPageModule),
   },
   // Tabs
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./home/home.module').then(m => m.homePageModule),
-  //   canActivate: [AuthGuard],
-  //   data: { roles: [Role.Admin, Role.Teacher, Role.Student] }
-  // },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.homePageModule),
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin, Role.Teacher, Role.Student] }
+  },
   {
     path: 'messages',
     loadChildren: () => import('./messages/messages.module').then(m => m.messagesPageModule),
