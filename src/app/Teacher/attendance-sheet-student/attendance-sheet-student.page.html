@@ -25,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let userdata of usertotalattendancetotal">
+                <tr *ngFor="let userdata of usertotalattendancetotal;index as i;">
                     <th scope="row">{{userdata.user._id}}</th>
                     <td>{{userdata.user.name}}</td>
                     <td *ngFor="let fdata of things[i]">{{fdata.status}}</td>
