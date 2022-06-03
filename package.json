@@ -92,7 +92,7 @@
     "devDependencies": {
         "@angular-devkit/build-angular": "^0.901.10",
         "@angular/cli": "^10.0.1",
-        "@angular/core": "^10.0.3",
+        "@angular/core": "^11.0.5",
         "@angular/language-service": "^10.0.3",
         "@angular/service-worker": "^10.0.3",
         "@capacitor/cli": "^2.2.1",
